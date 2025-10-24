@@ -6,8 +6,9 @@ import Layout from '../Layout/Layout';
 const HeroContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: ${props => props.theme.spacing.xxl};
+  min-height: 100vh;
   
   @media (max-width: ${props => props.theme.breakpoints.tablet}) {
     flex-direction: column-reverse;
@@ -72,15 +73,26 @@ const ImageContainer = styled(motion.div)`
 `;
 
 const ProfileImage = styled.img`
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
+  width: 350px;
+  height: 480px;
+  border-radius: 0px;
   object-fit: cover;
-  border: 4px solid ${props => props.theme.colors.primary};
+  border: none;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.15),
+    0 0 1px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 
+      0 30px 80px rgba(0, 0, 0, 0.2),
+      0 0 1px rgba(0, 0, 0, 0.05);
+  }
   
   @media (max-width: ${props => props.theme.breakpoints.tablet}) {
-    width: 250px;
-    height: 250px;
+    width: 280px;
+    height: 380px;
   }
 `;
 

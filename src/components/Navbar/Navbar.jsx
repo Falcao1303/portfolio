@@ -10,11 +10,12 @@ const NavContainer = styled.nav`
   left: 0;
   right: 0;
   z-index: 1000;
-  background-color: ${props => props.$scrolled ? props.theme.colors.white : 'transparent'};
-  box-shadow: ${props => props.$scrolled ? '0 2px 4px rgba(0,0,0,0.1)' : 'none'};
+  background-color: ${props => props.$scrolled ? 'rgba(255, 255, 255, 0.95)' : 'transparent'};
+  backdrop-filter: ${props => props.$scrolled ? 'blur(10px)' : 'none'};
+  box-shadow: ${props => props.$scrolled ? '0 4px 20px rgba(0,0,0,0.08)' : 'none'};
   transition: all ${props => props.theme.transitions.default};
   padding: ${props => props.theme.spacing.md} 0;
-  height: 60px;
+  height: 70px;
   display: flex;
   align-items: center;
 `;
@@ -29,8 +30,15 @@ const NavContent = styled.div`
 `;
 
 const Logo = styled.img`
-  height: 40px;
+  height: 50px;
+  width: auto;
   cursor: pointer;
+  transition: all 0.3s ease;
+  object-fit: contain;
+  
+  &:hover {
+    transform: scale(1.08);
+  }
 `;
 
 const NavLinks = styled.div`
@@ -52,15 +60,38 @@ const NavLinks = styled.div`
 
 const NavLink = styled(Link)`
   color: ${props => props.theme.colors.text};
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  position: relative;
+  
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, ${props => props.theme.colors.primary}, ${props => props.theme.colors.accent});
+    transition: width 0.3s ease;
+  }
   
   &:hover {
     color: ${props => props.theme.colors.primary};
+    
+    &:after {
+      width: 100%;
+    }
   }
 
   &.active {
     color: ${props => props.theme.colors.primary};
+    
+    &:after {
+      width: 100%;
+    }
   }
 `;
 
@@ -71,6 +102,11 @@ const MenuButton = styled.button`
   font-size: 1.5rem;
   color: ${props => props.theme.colors.text};
   cursor: pointer;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: ${props => props.theme.colors.primary};
+  }
 
   @media (max-width: ${props => props.theme.breakpoints.tablet}) {
     display: block;
@@ -104,7 +140,7 @@ const Navbar = () => {
     <NavContainer $scrolled={isScrolled}>
       <NavContent>
         <Link to="home" smooth duration={500}>
-          <Logo src="/logo.png" alt="Lucas Falcão" />
+          <Logo src="/logo2.png" alt="Lucas Falcão" />
         </Link>
         <MenuButton onClick={toggleMenu}>
           <FontAwesomeIcon icon={isMenuOpen ? faTimes : faBars} />
