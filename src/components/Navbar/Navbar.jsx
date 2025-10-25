@@ -140,7 +140,7 @@ const Navbar = () => {
     <NavContainer $scrolled={isScrolled}>
       <NavContent>
         <Link to="home" smooth duration={500}>
-          <Logo src="/logo2.png" alt="Lucas Falcão" />
+          <Logo src="/logobranca.png" alt="Lucas Falcão" />
         </Link>
         <MenuButton onClick={toggleMenu}>
           <FontAwesomeIcon icon={isMenuOpen ? faTimes : faBars} />
